@@ -23,24 +23,34 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Consumer<Places>(
-          child: const Center(child: Text('No Places Available')),
-          builder: (context, value, child) => value.places.isEmpty
-              ? Center(child: child)
-              : ListView.builder(
-                  itemCount: value.places.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: FileImage(value.places[index].image),
-                      ),
-                      title: Text(value.places[index].title),
-                      onTap: () {
-                        // go to detail page
-                      },
-                    );
-                  },
-                ),
+        body: FutureBuilder(
+          future:
+              Provider.of<Places>(context, listen: false).fetchAndSetPlaces(),
+          builder: (context, snapshot) =>
+              snapshot.connectionState == ConnectionState.waiting
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Consumer<Places>(
+                      child: const Center(child: Text('No Places Available')),
+                      builder: (context, value, child) => value.places.isEmpty
+                          ? Center(child: child)
+                          : ListView.builder(
+                              itemCount: value.places.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage:
+                                        FileImage(value.places[index].image),
+                                  ),
+                                  title: Text(value.places[index].title),
+                                  onTap: () {
+                                    // go to detail page
+                                  },
+                                );
+                              },
+                            ),
+                    ),
         ),
       ),
     );

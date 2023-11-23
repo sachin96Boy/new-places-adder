@@ -23,10 +23,22 @@ class Places with ChangeNotifier {
     _places.add(newPlace);
     notifyListeners();
 
-    DBHelper.insert('PLACES', {
+    DBHelper.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path
     });
+  }
+
+  Future<void> fetchAndSetPlaces() async {
+    final dataList = await DBHelper.getData('user_places');
+    _places = dataList
+        .map((e) => Place(
+            id: e['id'],
+            title: e['title'],
+            location: LatLang(latitude: 1.0, longitude: 2.0),
+            image: File(e['image'])))
+        .toList();
+    notifyListeners();
   }
 }
