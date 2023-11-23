@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlacesDetailsScreen extends StatelessWidget {
+  static const routeName = '/place-details';
   const PlacesDetailsScreen({super.key});
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:good_places_app/config/route_config.dart';
 import 'package:good_places_app/providers/places.dart';
-import 'package:good_places_app/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => Places([]),
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Great places',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        routerConfig: router,
       ),
     );
   }
