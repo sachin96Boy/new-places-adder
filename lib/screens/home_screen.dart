@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Great Places'),
+          title: const Text('snap Picker'),
           actions: [
             IconButton(
               onPressed: () {

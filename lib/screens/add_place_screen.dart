@@ -37,7 +37,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Add New Place'),
+          title: const Text('Add New Pick with Details'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
